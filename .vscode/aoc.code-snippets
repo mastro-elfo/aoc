@@ -28,7 +28,7 @@
 			"",
 			"def main() -> None:",
 			"    with open(\"${TM_FILENAME/(.*)_.+$/$1/}.dat\", \"r\", encoding=\"utf8\") as file:",
-			"        solution(file.read())",
+			"        solution(file.read().strip())",
 			"",
 			"",
 			"if __name__ == \"__main__\":",
