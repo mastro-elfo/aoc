@@ -50,5 +50,22 @@
 			"  .then(solution);"
 		],
 		"description": "Generates a new AOC file for deno"
+	},
+	"Haskell AOC": {
+		"scope": "haskell",
+		"prefix": "aoc",
+		"body": [
+			"import System.IO",
+			"",
+			"solution :: String -> String",
+			"solution content = ${2:content}",
+			"",
+			"main :: IO ()",
+			"main = do",
+			"    handle <- openFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" ReadMode",
+			"    content <- hGetContents handle",
+			"    print . show . solution $ content"
+		],
+		"description": "Generates a new AOC file for haskell"
 	}
 }
