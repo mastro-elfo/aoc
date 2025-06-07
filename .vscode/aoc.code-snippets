@@ -47,7 +47,8 @@
 			"",
 			"Deno.readTextFile(\"${TM_FILENAME/(.*)-.+$/$1/}.dat\")",
 			"  .then((content) => content.trim())",
-			"  .then(solution);"
+			"  .then(solution)",
+			"  .then(console.log);"
 		],
 		"description": "Generates a new AOC file for deno"
 	},
