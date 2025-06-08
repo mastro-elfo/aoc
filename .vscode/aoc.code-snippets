@@ -68,7 +68,7 @@
 			"main = do",
 			"    handle <- openFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" ReadMode",
 			"    content <- hGetContents handle",
-			"    print . show . solution $ content"
+			"    print . solution $ content"
 		],
 		"description": "Generates a new AOC file for haskell"
 	}
