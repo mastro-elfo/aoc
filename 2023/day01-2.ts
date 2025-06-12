@@ -13,25 +13,18 @@ function firstDigit(line: string, backward: boolean) {
   );
 }
 
-function replace(line: string, backward: boolean) {
+function replace(line: string, backward: boolean): string {
   if (backward) {
-    return line
-      .replace("twone", "1")
-      .replaceAll("zerone", "1")
-      .replaceAll("eightwo", "2")
-      .replaceAll("eighthree", "3")
-      .replaceAll("oneight", "8")
-      .replaceAll("nineight", "8")
-      .replaceAll("one", "1")
-      .replaceAll("two", "2")
-      .replaceAll("three", "3")
-      .replaceAll("four", "4")
-      .replaceAll("five", "5")
-      .replaceAll("six", "6")
-      .replaceAll("seven", "7")
-      .replaceAll("eight", "8")
-      .replaceAll("nine", "9")
-      .replaceAll("zero", "0")
+    return replace(
+      line
+        .replaceAll("twone", "1")
+        .replaceAll("zerone", "1")
+        .replaceAll("eightwo", "2")
+        .replaceAll("eighthree", "3")
+        .replaceAll("oneight", "8")
+        .replaceAll("nineight", "8"),
+      false
+    )
       .split("")
       .reverse()
       .join("");

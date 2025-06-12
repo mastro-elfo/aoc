@@ -15,22 +15,15 @@ def first_digit(line: str, backward=False) -> int:
 def replace(line: str, backward=False) -> str:
     if backward:
         return (
-            line.replace("twone", "1")
-            .replace("zerone", "1")
-            .replace("eightwo", "2")
-            .replace("eighthree", "3")
-            .replace("oneight", "8")
-            .replace("nineight", "8")
-            .replace("one", "1")
-            .replace("two", "2")
-            .replace("three", "3")
-            .replace("four", "4")
-            .replace("five", "5")
-            .replace("six", "6")
-            .replace("seven", "7")
-            .replace("eight", "8")
-            .replace("nine", "9")
-            .replace("zero", "0")
+            replace(
+                line.replace("twone", "1")
+                .replace("zerone", "1")
+                .replace("eightwo", "2")
+                .replace("eighthree", "3")
+                .replace("oneight", "8")
+                .replace("nineight", "8"),
+                False,
+            )
         )[::-1]
     return (
         line.replace("twone", "2")
