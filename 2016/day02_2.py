@@ -7,7 +7,7 @@ type Position = tuple[int, int]
 
 
 def solution(content: list[str]) -> Any:
-    current = (1, 1)
+    current = (0, 21)
     code = ""
     for line in content:
         for char in line:
