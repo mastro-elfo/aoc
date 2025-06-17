@@ -5,16 +5,12 @@ from typing import Any
 
 
 def solution(content: list[str]) -> Any:
-    count = [(has_2x(line), has_3x(line)) for line in content]
+    count = [(has_nx(2, line), has_nx(3, line)) for line in content]
     return len([x for x, _ in count if x]) * len([x for _, x in count if x])
 
 
-def has_2x(line: str):
-    return any(z == 2 for z in [len([x for x in line if x == y]) for y in line])
-
-
-def has_3x(line: str):
-    return any(z == 3 for z in [len([x for x in line if x == y]) for y in line])
+def has_nx(n: int, line: str):
+    return any(z == n for z in [len([x for x in line if x == y]) for y in line])
 
 
 def main() -> None:
