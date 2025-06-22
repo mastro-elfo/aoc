@@ -65,10 +65,8 @@
 			"solution content = ${2:content}",
 			"",
 			"main :: IO ()",
-			"main = do",
-			"    handle <- openFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" ReadMode",
-			"    content <- hGetContents handle",
-			"    print . solution $ content"
+			"main = do openFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" ReadMode >>= hGetContents >>= print . solution",
+			""
 		],
 		"description": "Generates a new AOC file for haskell"
 	}
