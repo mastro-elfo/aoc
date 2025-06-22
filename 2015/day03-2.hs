@@ -15,9 +15,11 @@ move (x,y) 'v' = (x, y-1)
 move (x,y) '<' = (x-1, y)
 move (x,y) '>' = (x+1, y)
 
+evens :: [a] -> [a]
 evens (x:xs) = x:odds xs
 evens _ = []
 
+odds :: [a] -> [a]
 odds (_:xs) = evens xs
 odds _ = []
 
