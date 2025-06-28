@@ -1,5 +1,6 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
+# 230589: too high
 
 from typing import Any
 
@@ -10,34 +11,45 @@ type Segment = tuple[Coords, Coords]
 
 def solution(content: str) -> Any:
     lines = content.split("\n")
+    w1_seg = parse(lines[0])
+    w2_seg = parse(lines[1])
+    wire1 = untangle(w1_seg)
+    wire2 = untangle(w2_seg)
+
     return sorted(
-        manhattan((0, 0), coords)
-        for s1, s2 in [
-            (s1, s2)
-            for s1 in parse(lines[0])
-            for s2 in parse(lines[1])
-            if intersect(s1, s2)
-        ]
+        length(coords, wire1) + length(coords, wire2)
+        for s1, s2 in [(s1, s2) for s1 in w1_seg for s2 in w2_seg if intersect(s1, s2)]
         for coords in unfold(s1)
         if coords in unfold(s2) and coords != (0, 0)
     )[0]
 
 
+def length(coords: Coords, wire: list[Coords]):
+    return wire.index(coords)
+
+
+def untangle(wire: list[Segment]):
+    return [coords for segment in wire for coords in unfold(segment)]
+
+
 def unfold(segment: Segment):
     start, end = segment
     if is_vertical(segment):
-        s, e = (start[1], end[1]) if start[1] < end[1] else (end[1], start[1])
-        return [(start[0], y) for y in range(s, e + 1)]
-    else:
-        s, e = (start[0], end[0]) if start[0] < end[0] else (end[0], start[0])
-        return [(x, start[1]) for x in range(s, e + 1)]
+        return [
+            (start[0], start[1] + y * (1 if end[1] > start[1] else -1))
+            for y in range(abs(start[1] - end[1]))
+        ]
+    return [
+        (start[0] + x * (1 if end[0] > start[0] else -1), start[1])
+        for x in range(abs(start[0] - end[0]))
+    ]
 
 
 def intersect(s1: Segment, s2: Segment):
     start1, end1 = s1
     start2, end2 = s2
     if is_vertical(s1) and is_vertical(s2):
-        return start1[1] == start2[1] and (
+        return start1[0] == start2[0] and (
             between(start1[1], start2[1], end2[1])
             or between(end1[1], start2[1], end2[1])
             or between(start2[1], start1[1], end1[1])
@@ -52,7 +64,7 @@ def intersect(s1: Segment, s2: Segment):
             start2[1], start1[1], end1[1]
         )
     if not is_vertical(s1) and not is_vertical(s2):
-        return start1[0] == start2[0] and (
+        return start1[1] == start2[1] and (
             (
                 between(start1[0], start2[0], end2[0])
                 or between(end1[0], start2[0], end2[0])
