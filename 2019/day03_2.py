@@ -1,7 +1,5 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
-# 230589: too high
-
 from typing import Any
 
 type Coords = tuple[int, int]
