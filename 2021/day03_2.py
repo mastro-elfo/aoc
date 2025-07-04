@@ -42,14 +42,6 @@ def parse(line: str):
     return [int(x) for x in line.strip()]
 
 
-def most_common_value(count: list[tuple[int, int]]):
-    return [0 if c0 > c1 else 1 for c0, c1 in count]
-
-
-def least_common_value(count: list[tuple[int, int]]):
-    return [0 if c0 < c1 else 1 for c0, c1 in count]
-
-
 def init(length: int):
     return [(0, 0)] * length
 
