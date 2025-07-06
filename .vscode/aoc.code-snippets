@@ -59,13 +59,11 @@
 		"scope": "haskell",
 		"prefix": "aoc",
 		"body": [
-			"import System.IO",
-			"",
 			"solution :: String -> String",
 			"solution content = ${2:content}",
 			"",
 			"main :: IO ()",
-			"main = do openFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" ReadMode >>= hGetContents >>= print . solution",
+			"main = do readFile \"${TM_FILENAME/(.*)-.+$/$1/}.dat\" >>= print . solution",
 			""
 		],
 		"description": "Generates a new AOC file for haskell"
