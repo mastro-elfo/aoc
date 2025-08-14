@@ -4,23 +4,24 @@ type Coords = {
 };
 
 function solution(content: string) {
-  const matrix = content.split("\n").filter((line) => line);
-  const as = matrix.reduce(
-    (rowAcc, row, rowIndex) => [
-      ...rowAcc,
-      ...row
-        .split("")
-        .reduce(
-          (colAcc, col, colIndex) =>
-            col === "A" && check(matrix, rowIndex, colIndex)
-              ? [...colAcc, true]
-              : colAcc,
-          [] as boolean[]
-        ),
-    ],
-    [] as boolean[]
-  );
-  return as.length;
+  return content
+    .split("\n")
+    .filter((line) => line)
+    .reduce(
+      (rowAcc, row, rowIndex, matrix) => [
+        ...rowAcc,
+        ...row
+          .split("")
+          .reduce(
+            (colAcc, col, colIndex) =>
+              col === "A" && check(matrix, rowIndex, colIndex)
+                ? [...colAcc, true]
+                : colAcc,
+            [] as boolean[]
+          ),
+      ],
+      [] as boolean[]
+    ).length;
 }
 
 function check(matrix: string[], row: number, col: number) {
