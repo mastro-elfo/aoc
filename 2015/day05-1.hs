@@ -5,7 +5,7 @@ solution :: String -> Int
 solution =  length . filter isNice . lines
 
 isNice :: String -> Bool
-isNice xs = all id (map (\f -> f xs) [hasDoubledLetter, hasMoreThanThreeVowels, hasNoNaugtyStrings])
+isNice xs = all (\f -> f xs) [hasDoubledLetter, hasMoreThanThreeVowels, hasNoNaugtyStrings]
 
 hasMoreThanThreeVowels :: String -> Bool
 hasMoreThanThreeVowels = (>=3) . length . filter (`elem` "aeiou")

@@ -4,7 +4,7 @@ solution :: String -> Int
 solution = length . filter isNice . lines
 
 isNice :: String -> Bool
-isNice xs = all id (map (\f -> f xs) [hasRepeatingDouble, hasEfeRule])
+isNice xs = all (\f -> f xs) [hasRepeatingDouble, hasEfeRule]
 
 hasEfeRule :: String -> Bool
 hasEfeRule (x:y:z:xs)
