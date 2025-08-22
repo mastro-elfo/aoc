@@ -14,7 +14,6 @@ def hash_gen(prefix: str):
     while True:
         hashed = hashlib.md5(bytes(prefix + str(counter), "utf8")).hexdigest()
         if hashed.startswith("0" * 5):
-            print(counter, hashed)
             yield hashed
         counter += 1
 
