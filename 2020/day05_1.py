@@ -1,0 +1,23 @@
+# pylint: disable=missing-module-docstring, missing-function-docstring
+
+
+from typing import Any
+
+
+def solution(content: list[str]) -> Any:
+    return max(parse(line) for line in content)
+
+
+def parse(line: str):
+    row = int(line[:7].replace("B", "1").replace("F", "0"), 2)
+    col = int(line[7:].replace("R", "1").replace("L", "0"), 2)
+    return row * 8 + col
+
+
+def main() -> None:
+    with open("day05.dat", "r", encoding="utf8") as file:
+        print(solution(file.readlines()))
+
+
+if __name__ == "__main__":
+    main()
