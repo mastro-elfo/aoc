@@ -1,7 +1,5 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
-# FIXME: 29321 is too high
-
 import re
 from typing import Any
 
@@ -13,13 +11,6 @@ def solution(content: list[str]) -> Any:
     vectors = [parse(line) for line in content]
     max_x, max_y = get_limit(vectors)
     return len([coord for coord in each(max_x, max_y) if find_two(coord, vectors)])
-
-
-def is_straight(vec: Vector):
-    start, end = vec
-    sx, sy = start
-    ex, ey = end
-    return sx == ex or sy == ey
 
 
 def find_one(coords: Coords, vecs: list[Vector]):
@@ -44,9 +35,9 @@ def is_in_line(coords: Coords, vec: Vector):
     if y == sy == ey:
         return sx <= x <= ex or ex <= x <= sx
     if sy - sx == ey - ex == y - x:
-        return True
+        return sx <= x <= ex or ex <= x <= sx
     if sx + sy == ex + ey == x + y:
-        return True
+        return sx <= x <= ex or ex <= x <= sx
     return False
 
 
