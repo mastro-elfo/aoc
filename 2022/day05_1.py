@@ -21,8 +21,6 @@ def tops(stacks: Stacks):
 
 def act(instruction: Instruction, stacks: Stacks) -> Stacks:
     qty, frm, to = instruction
-    frm -= 1
-    to -= 1
     copy = stacks.copy()
     while qty > 0:
         fst, *rest = copy[frm]
@@ -41,9 +39,7 @@ def parse_stacks(content: str) -> Stacks:
     lines = content.split("\n")
     size = (len(lines[0]) + 1) // 4
     stacks: list[str] = ["" for _ in range(size)]
-    for line in lines:
-        if not line.startswith("["):
-            continue
+    for line in lines[:-1]:
         for idx in range(size):
             index = idx * 4 + 1
             crate = line[index].strip()
@@ -60,7 +56,7 @@ def parse_procedure(line: str) -> Instruction:
     match = re.match(r"move (\d+) from (\d+) to (\d+)", line)
     if match is None:
         raise ValueError(f"Invalid line {line}")
-    return (int(match[1]), int(match[2]), int(match[3]))
+    return (int(match[1]), int(match[2]) - 1, int(match[3]) - 1)
 
 
 def main() -> None:
