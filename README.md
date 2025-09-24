@@ -7,6 +7,7 @@ https://adventofcode.com
 - https://adventofcode.com/2015/day/3
 - https://adventofcode.com/2015/day/4
 - https://adventofcode.com/2015/day/5
+- https://adventofcode.com/2015/day/6
 
 - https://adventofcode.com/2016/day/1
 - https://adventofcode.com/2016/day/2
@@ -54,8 +55,10 @@ https://adventofcode.com
 - https://adventofcode.com/2023/day/3
 - https://adventofcode.com/2023/day/3
 - https://adventofcode.com/2023/day/4
+- https://adventofcode.com/2023/day/5
 
 - https://adventofcode.com/2024/day/1
 - https://adventofcode.com/2024/day/2 ✨
 - https://adventofcode.com/2024/day/3 ✨
 - https://adventofcode.com/2024/day/4
+- https://adventofcode.com/2024/day/5
