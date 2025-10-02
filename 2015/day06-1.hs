@@ -15,7 +15,7 @@ type Lights = [Light]
 solution :: String -> Int
 solution content = length . filter status $ helper lights instructions
   where
-    lights = [(x, y, False) | x <- [0 .. 1000], y <- [0 .. 1000]]
+    lights = [(x, y, False) | x <- [0 .. 999], y <- [0 .. 999]]
     instructions = map parse . lines $ content
     helper lights [] = lights
     helper lights (i : ins) = helper (act i lights) ins
