@@ -35,6 +35,7 @@ https://adventofcode.com
 - https://adventofcode.com/2019/day/3
 - https://adventofcode.com/2019/day/4
 - https://adventofcode.com/2019/day/5
+- https://adventofcode.com/2019/day/6
 
 - https://adventofcode.com/2020/day/1
 - https://adventofcode.com/2020/day/2
