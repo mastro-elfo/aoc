@@ -11,7 +11,6 @@ def solution(content: list[str]) -> Any:
     lefts = [left for left, _ in edges]
     rights = [right for _, right in edges]
     root = [item for item in lefts if item not in rights][0]
-    nodes = list(set(lefts + rights))
     a_tree = tree(root, edges)
     you_branch = branch("YOU", a_tree)
     san_branch = branch("SAN", a_tree)
