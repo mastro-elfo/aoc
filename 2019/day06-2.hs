@@ -2,7 +2,6 @@ import Data.List
 import Data.Maybe (fromJust)
 import Data.Set (fromList, toList)
 import Data.Tree (Tree (Node, rootLabel, subForest))
-import Debug.Trace (trace)
 
 solution :: String -> Int
 solution content = (length . dropWhile (/= youRoot) $ youBranch) + (length . dropWhile (/= sanRoot) $ sanBranch) - 2
@@ -11,7 +10,7 @@ solution content = (length . dropWhile (/= youRoot) $ youBranch) + (length . dro
     lefts = map fst edges
     rights = map snd edges
     root = fromJust . find (`notElem` rights) $ lefts
-    aTree = tree root (filter (/= root) (dedup (lefts ++ rights))) edges
+    aTree = tree root edges
     youBranch = branch "YOU" aTree
     sanBranch = branch "SAN" aTree
     (youRoot, sanRoot) = head . dropWhile (uncurry (==)) $ zip youBranch sanBranch
@@ -25,13 +24,8 @@ branch a (Node r xs)
     subtrees = map (branch a) xs
     isRightBranch = not (all null subtrees)
 
-treeElem :: (Eq a) => a -> Tree a -> Bool
-treeElem a (Node r xs)
-  | a == r = True
-  | otherwise = any (treeElem a) xs
-
-tree :: String -> [String] -> [(String, String)] -> Tree String
-tree root nodes edges = Node {subForest = [tree b (filter (/= root) nodes) edges | (a, b) <- edges, a == root], rootLabel = root}
+tree :: String -> [(String, String)] -> Tree String
+tree root edges = Node {subForest = [tree b edges | (a, b) <- edges, a == root], rootLabel = root}
 
 dedup :: (Ord a) => [a] -> [a]
 dedup = toList . fromList

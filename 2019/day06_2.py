@@ -12,7 +12,7 @@ def solution(content: list[str]) -> Any:
     rights = [right for _, right in edges]
     root = [item for item in lefts if item not in rights][0]
     nodes = list(set(lefts + rights))
-    a_tree = tree(root, [node for node in nodes if nodes != root], edges)
+    a_tree = tree(root, edges)
     you_branch = branch("YOU", a_tree)
     san_branch = branch("SAN", a_tree)
     you_root, san_root = [
@@ -44,14 +44,10 @@ def branch(node: str, tr: Tree) -> list[str]:
     return []
 
 
-def tree(root: str, nodes: list[str], edges: list[tuple[str, str]]) -> Tree:
+def tree(root: str, edges: list[tuple[str, str]]) -> Tree:
     return (
         root,
-        [
-            tree(b, [node for node in nodes if nodes != root], edges)
-            for a, b in edges
-            if a == root
-        ],
+        [tree(b, edges) for a, b in edges if a == root],
     )
 
 

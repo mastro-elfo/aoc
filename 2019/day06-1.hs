@@ -4,7 +4,7 @@ import Data.Set (fromList, toList)
 import Data.Tree (Tree (Node, rootLabel, subForest), drawTree, unfoldTree)
 
 solution :: String -> Int
-solution content = count (tree root (filter (/= root) (dedup (lefts ++ rights))) edges)
+solution content = count (tree root edges)
   where
     edges = map parse . lines $ content
     lefts = map fst edges
@@ -16,8 +16,8 @@ count = helper 0
   where
     helper c (Node a xs) = c + (sum . map (helper (c + 1)) $ xs)
 
-tree :: String -> [String] -> [(String, String)] -> Tree String
-tree root nodes edges = Node {subForest = [tree b (filter (/= root) nodes) edges | (a, b) <- edges, a == root], rootLabel = root}
+tree :: String -> [(String, String)] -> Tree String
+tree root edges = Node {subForest = [tree b edges | (a, b) <- edges, a == root], rootLabel = root}
 
 dedup :: (Ord a) => [a] -> [a]
 dedup = toList . fromList

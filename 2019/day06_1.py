@@ -11,8 +11,7 @@ def solution(content: list[str]) -> Any:
     lefts = [left for left, _ in edges]
     rights = [right for _, right in edges]
     root = [item for item in lefts if item not in rights][0]
-    nodes = list(set(lefts + rights))
-    return count(tree(root, [node for node in nodes if nodes != root], edges))
+    return count(tree(root, edges))
 
 
 def count(tr: Tree):
@@ -23,14 +22,10 @@ def count(tr: Tree):
     return helper(0, tr)
 
 
-def tree(root: str, nodes: list[str], edges: list[tuple[str, str]]) -> Tree:
+def tree(root: str, edges: list[tuple[str, str]]) -> Tree:
     return (
         root,
-        [
-            tree(b, [node for node in nodes if nodes != root], edges)
-            for a, b in edges
-            if a == root
-        ],
+        [tree(b, edges) for a, b in edges if a == root],
     )
 
 
