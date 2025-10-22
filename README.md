@@ -49,6 +49,7 @@ https://adventofcode.com
 - https://adventofcode.com/2021/day/3
 - https://adventofcode.com/2021/day/4
 - https://adventofcode.com/2021/day/5
+- https://adventofcode.com/2021/day/6 ✨
 
 - https://adventofcode.com/2022/day/1
 - https://adventofcode.com/2022/day/2
