@@ -1,6 +1,7 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
 
+from multiprocessing import Pool
 from typing import Any
 
 type Coord = tuple[int, int]
@@ -9,21 +10,50 @@ type Guard = tuple[int, int, str]
 
 def solution(content: str) -> Any:
     obstacles = parse_obstacles(content)
-    current = parse_start_position(content)
+    start = parse_start_position(content)
     limits = parse_limits(content)
-    positions: list[Guard] = [current]
+    positions = list(set(to_coord(g) for g in track(obstacles, limits, start)))
 
+    with Pool(4) as p:
+        return sum(p.map(process, [(obstacles, limits, start, p) for p in positions]))
+
+
+def process(data: tuple[list[Coord], Coord, Guard, Coord]):
+    obstacles, limits, start, obstacle = data
+    print(obstacle)
+    return play([*obstacles, obstacle], limits, start)
+
+
+def play(obstacles: list[Coord], limits: Coord, start: Guard):
+    current = start
+    positions: list[Guard] = [start]
     while True:
         new_current = move(current)
         if is_outside(limits, new_current):
-            break
-        elif is_obstacle(obstacles, new_current):
+            return False
+        if new_current in positions:
+            return True
+
+        if is_obstacle(obstacles, new_current):
             current = rotate(current)
         else:
             current = new_current
             positions.append(current)
 
-    return len(set(to_coord(position) for position in positions))
+
+def track(obstacles: list[Coord], limits: Coord, start: Guard):
+    current = start
+    positions: list[Guard] = [start]
+    while True:
+        new_current = move(current)
+        if is_outside(limits, new_current):
+            return positions
+
+        if is_obstacle(obstacles, new_current):
+            current = rotate(current)
+        else:
+            current = new_current
+            positions.append(current)
 
 
 def rotate(current: Guard) -> Guard:
