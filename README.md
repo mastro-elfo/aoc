@@ -26,7 +26,7 @@ https://adventofcode.com
 
 - https://adventofcode.com/2017/day/1 ✓✓✓
 - https://adventofcode.com/2017/day/2 ✓✓✓
-- https://adventofcode.com/2017/day/3 ✓
+- https://adventofcode.com/2017/day/3 ✓✓
 - https://adventofcode.com/2017/day/4 ✓✓✓✨
 - https://adventofcode.com/2017/day/5 ✓✓✓
 - https://adventofcode.com/2017/day/6 ✓✓✓
