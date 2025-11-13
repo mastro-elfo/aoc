@@ -21,11 +21,6 @@ def solution(content: list[str]) -> Any:
     return get(programs, unblncd[2][min_index])[1] + oth_key - min_key
 
 
-def wrong(programs: list[Program], names: list[str], wght: int) -> Program:
-    print([prog for prog in programs if prog[0] in names])
-    return [prog for prog in programs if prog[0] in names and prog[1] == wght][0]
-
-
 def unbalanced(programs: list[Program]) -> Program:
     unblncd = [prog for prog in programs if is_unbalanced(weights(programs, prog))]
     length = len(unblncd)
