@@ -40,6 +40,7 @@ https://adventofcode.com
 - https://adventofcode.com/2018/day/4 ✓✓
 - https://adventofcode.com/2018/day/5 ✓✓✓
 - https://adventofcode.com/2018/day/6 ✓✓✓
+- https://adventofcode.com/2018/day/7 ✓
 
 ## 2019
 
