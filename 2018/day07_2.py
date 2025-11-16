@@ -22,14 +22,12 @@ def unwind(steps: list[Step]) -> int:
     copy = steps.copy()
     count = 0
     workers: list[Worker] = [("", 0)] * WORKERS
-    output = ""
     while copy:
         workers = [(step, max(0, time - 1)) for step, time in workers]
 
         for worker in workers:
             if not is_idle(worker) and has_ended(worker):
                 name, _ = worker
-                output += name
                 copy = [step for step in copy if step[0] != name]
                 copy = [
                     (nm, [req for req in reqs if req != name]) for (nm, reqs) in copy
