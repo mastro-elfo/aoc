@@ -70,7 +70,7 @@ https://adventofcode.com
 - https://adventofcode.com/2021/day/4 ✓✓✓
 - https://adventofcode.com/2021/day/5 ✓✓✓
 - https://adventofcode.com/2021/day/6 ✓✓✓✨
-- https://adventofcode.com/2021/day/7 ✓✓✨
+- https://adventofcode.com/2021/day/7 ✓✓✓✨
 
 ## 2022
 
