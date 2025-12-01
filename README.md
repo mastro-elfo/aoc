@@ -101,3 +101,5 @@ https://adventofcode.com
 - https://adventofcode.com/2024/day/6 ✓✓✓
 
 ## 2025
+
+- https://adventofcode.com/2025/day/1 ✓
