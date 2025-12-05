@@ -16,7 +16,7 @@ remove papers
     filtered = Data.Map.filter (>= 4) . Data.Map.mapWithKey (\k _ -> length . neighbors papers $ k) $ papers
 
 neighbors :: Data.Map.Map Paper Int -> Paper -> [Paper]
-neighbors mp (x, y) = Prelude.filter (`member` mp) [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1), (x - 1, y - 1), (x - 1, y + 1), (x + 1, y - 1), (x + 1, y + 1)]
+neighbors mp (x, y) = filter (`member` mp) [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1), (x - 1, y - 1), (x - 1, y + 1), (x + 1, y - 1), (x + 1, y + 1)]
 
 parse :: Paper -> String -> Data.Map.Map Paper Int
 parse _ [] = Data.Map.empty
