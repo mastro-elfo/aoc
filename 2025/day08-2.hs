@@ -1,7 +1,6 @@
 import Data.Function (on)
 import Data.List (find, sortBy)
 import Data.Maybe (fromJust, isJust)
-import Data.Ord (Down (..), comparing)
 import Data.Set (fromList, toList)
 import Data.Text (pack, splitOn, unpack)
 import Distribution.Utils.Generic (trdOf3)
@@ -13,15 +12,23 @@ type Distances = (Coords, Coords, Float)
 type Circuit = [Coords]
 
 solution :: String -> Int
-solution = product . take 3 . sortBy (comparing Down) . map length . connect . map (\(a, b, _) -> [a, b]) . take 1000 . sortBy (compare `on` trdOf3) . toDistances . map parse . lines
+solution content = multiplyX . connect (length boxes) . map (\(a, b, _) -> [a, b]) . sortBy (compare `on` trdOf3) . toDistances $ boxes
+  where
+    boxes = map parse . lines $ content
 
-connect :: [Circuit] -> [Circuit]
-connect [] = []
-connect (cs : css)
-  | isJust other = connect (unique (cs ++ fromJust other) : filter (/= fromJust other) css)
-  | otherwise = cs : connect css
+connect :: Int -> [Circuit] -> (Coords, Coords)
+connect n (cs : css)
+  | isComplete = (head jOther, last jOther)
+  | isJust other = connect n (unique (cs ++ jOther) : filter (/= jOther) css)
+  | otherwise = connect n (css ++ [cs])
   where
     other = find (\os -> any (`elem` os) cs) css
+    jOther = fromJust other
+    newConfig = unique (cs ++ jOther) : filter (/= jOther) css
+    isComplete = isJust other && ((length . head $ newConfig) == n)
+
+multiplyX :: (Coords, Coords) -> Int
+multiplyX ((x1, _, _), (x2, _, _)) = x1 * x2
 
 unique :: (Ord a) => [a] -> [a]
 unique = toList . fromList
