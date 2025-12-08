@@ -1,15 +1,23 @@
-data Direction = L | R deriving (Eq, Show)
+data Direction = L | R
 
 type Amount = Int
 
 type Instruction = (Direction, Amount)
 
 solution :: String -> Int
-solution = length . filter (== 0) . foldl rotate [50] . map parse . lines
+solution = snd . foldl rotate (50, 0) . map parse . lines
 
-rotate :: [Int] -> Instruction -> [Int]
-rotate ps (L, am) = norm (head ps - am) : ps
-rotate ps (R, am) = norm (head ps + am) : ps
+rotate :: (Int, Amount) -> Instruction -> (Int, Amount)
+rotate (ps, zs) (L, am) = (new, zs + oneIfZero new)
+  where
+    new = norm (ps - am)
+rotate (ps, zs) (R, am) = (new, zs + oneIfZero new)
+  where
+    new = norm (ps + am)
+
+oneIfZero :: Int -> Int
+oneIfZero 0 = 1
+oneIfZero _ = 0
 
 norm :: Int -> Int
 norm n
