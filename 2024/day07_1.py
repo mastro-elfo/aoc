@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
 
-from typing import Any, Literal
+from typing import Any, Generator, Literal
 
 type Operation = Literal["SUM"] | Literal["MUL"]
 
@@ -39,12 +39,13 @@ def calc(x: int, y: int, op: Operation) -> int:
         return x + y
 
 
-def operations(n: int):
-    return [bin_to_op(n, bin(x)) for x in range(2**n)]
-
-
-def bin_to_op(n: int, seq: str) -> list[Operation]:
-    return ["SUM" if x == "0" else "MUL" for x in seq[2:].rjust(n, "0")]
+def operations(n: int) -> Generator[list[Operation], None, None]:
+    if n == 0:
+        yield []
+    else:
+        for rest in operations(n - 1):
+            yield ["SUM", *rest]
+            yield ["MUL", *rest]
 
 
 def parse(line: str) -> Equation:

@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
 
-from typing import Any, Literal
+from typing import Any, Generator, Literal
 
 type Operation = Literal["SUM"] | Literal["MUL"] | Literal["CNC"]
 
@@ -41,24 +41,14 @@ def calc(x: int, y: int, op: Operation) -> int:
         return int(str(x) + str(y))
 
 
-def operations(n: int):
-    return [ter_to_op(n, ternary(x)) for x in range(3**n)]
-
-
-def ter_to_op(n: int, seq: str) -> list[Operation]:
-    return [
-        "SUM" if x == "0" else "MUL" if x == "1" else "CNC" for x in seq.rjust(n, "0")
-    ]
-
-
-def ternary(n: int) -> str:
+def operations(n: int) -> Generator[list[Operation], None, None]:
     if n == 0:
-        return "0"
-    val = n // 3
-    rest = n % 3
-    if val == 0:
-        return str(rest)
-    return ternary(n // 3) + str(rest)
+        yield []
+    else:
+        for rest in operations(n - 1):
+            yield ["CNC", *rest]
+            yield ["MUL", *rest]
+            yield ["SUM", *rest]
 
 
 def parse(line: str) -> Equation:
