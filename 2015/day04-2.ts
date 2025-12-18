@@ -1,5 +1,5 @@
+import { encodeHex } from "@std/encoding/hex";
 import { md5 } from "@takker/md5";
-import { encodeHex } from "jsr:@std/encoding@1/hex";
 
 function solution(content: string) {
   let index = 1;
