@@ -90,7 +90,7 @@ https://adventofcode.com
 - https://adventofcode.com/2023/day/4 ✓✓✓
 - https://adventofcode.com/2023/day/5 ✓
 - https://adventofcode.com/2023/day/6 ✓✓✓✨
-- https://adventofcode.com/2023/day/7
+- https://adventofcode.com/2023/day/7 ½
 
 ## 2024
 
@@ -100,7 +100,7 @@ https://adventofcode.com
 - https://adventofcode.com/2024/day/4 ✓✓✓
 - https://adventofcode.com/2024/day/5 ✓✓✓
 - https://adventofcode.com/2024/day/6 ✓✓✓
-- https://adventofcode.com/2024/day/7 ✓✓✨
+- https://adventofcode.com/2024/day/7 ✓✓✓✨
 
 ## 2025
 
@@ -112,6 +112,7 @@ https://adventofcode.com
 - https://adventofcode.com/2025/day/6 ✓
 - https://adventofcode.com/2025/day/7 ✓✓
 - https://adventofcode.com/2025/day/8 ✓
-- https://adventofcode.com/2025/day/9
-- https://adventofcode.com/2025/day/10
-- https://adventofcode.com/2025/day/11
+- https://adventofcode.com/2025/day/9 ½
+- https://adventofcode.com/2025/day/10 ½
+- https://adventofcode.com/2025/day/11 ½
+- https://adventofcode.com/2025/day/12 ✗
