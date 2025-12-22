@@ -76,6 +76,7 @@ def target_of(i: Instruction):
 
 
 def target(trg: str) -> Instruction:
+    # TODO: Use generator and next
     return [t for t in instructions if target_of(t) == trg][0]
 
 

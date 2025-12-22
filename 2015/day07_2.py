@@ -26,7 +26,7 @@ def solution(content: list[str]) -> Any:
     instructions = [parse(line) for line in content]
     # Remove instruction to wire 'b'
     instructions = [i for i in instructions if target_of(i) != "b"]
-    # Add a new instruction for wire b, with the result from part 1
+    # Add a new instruction for wire 'b', with the result from part 1
     instructions.append(("3176", "", "SIG", "b"))
     return evaluate(target("a"))
 
@@ -80,6 +80,7 @@ def target_of(i: Instruction):
 
 
 def target(trg: str) -> Instruction:
+    # TODO: Use generator and next
     return [t for t in instructions if target_of(t) == trg][0]
 
 
