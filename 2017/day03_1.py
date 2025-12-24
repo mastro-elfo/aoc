@@ -22,6 +22,7 @@ def solution(content: int) -> Any:
     return half + diff
 
 
+# TODO: refactor by reading from file
 def main() -> None:
     print(solution(325489))
 

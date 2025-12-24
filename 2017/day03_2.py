@@ -51,6 +51,7 @@ def generator():
             yield current
 
 
+# TODO: refactor by reading from file
 def main() -> None:
     print(solution(325489))
 

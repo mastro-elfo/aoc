@@ -16,4 +16,5 @@ function solution(content: number) {
   return half + diff;
 }
 
+// TODO: refactor by reading from file
 console.log(solution(325489));

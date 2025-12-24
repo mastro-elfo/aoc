@@ -63,4 +63,5 @@ function hash({ x, y }: MemoryCell): string {
   return `${x}|${y}`;
 }
 
+// TODO: refactor by reading from file
 console.log(solution(325489));
