@@ -1,4 +1,4 @@
-import Data.List (isInfixOf, minimumBy, sort)
+import Data.List (isInfixOf, maximumBy, minimumBy, sort)
 import Data.Maybe (isJust)
 import Data.Set (fromList, toList)
 
@@ -13,21 +13,21 @@ solution content = worstId * worstMinute
     guardIds = unique . map guardId $ guards
     worstId =
       fst
-        . minimumBy secondInverted
+        . maximumBy second
         . map (\gid -> (gid, totAsleep guards gid))
         $ guardIds
     worstGuardShifts = filter ((== worstId) . guardId) guards
     worstMinute =
       fst
-        . minimumBy secondInverted
+        . maximumBy second
         . map (\m -> (m, countBetween m worstGuardShifts))
         $ [0 .. 59]
 
 countBetween :: Int -> [Guard] -> Int
 countBetween m = length . filter (\(_, start, end) -> isBetween m start end)
 
-secondInverted :: (Ord a) => (b, a) -> (b, a) -> Ordering
-secondInverted (_, a1) (_, a2) = compare a2 a1
+second :: (Ord b) => (a, b) -> (a, b) -> Ordering
+second (_, b1) (_, b2) = compare b1 b2
 
 totAsleep :: [Guard] -> Int -> Int
 totAsleep gs gid = sum . map (\(_, start, end) -> difference start end) . filter ((== gid) . guardId) $ gs
