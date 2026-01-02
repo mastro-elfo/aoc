@@ -45,7 +45,7 @@ https://adventofcode.com
 ## 2019
 
 - https://adventofcode.com/2019/day/1 ✓✓✓
-- https://adventofcode.com/2019/day/2 ✓✓
+- https://adventofcode.com/2019/day/2 ✓✓✓
 - https://adventofcode.com/2019/day/3 ✓✓½
 - https://adventofcode.com/2019/day/4 ✓✓✓
 - https://adventofcode.com/2019/day/5 ✓✓
