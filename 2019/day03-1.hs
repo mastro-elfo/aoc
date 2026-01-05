@@ -1,16 +1,29 @@
 import Data.List (sort)
-import System.IO (IOMode (ReadMode), hGetContents, openFile)
+
+data Direction = U | D | L | R
 
 type Coords = (Int, Int)
 
-type Instruction = (Char, Int)
+type Instruction = (Direction, Int)
 
 type Segment = (Coords, Coords)
 
 solution :: String -> Int
-solution content = (!! 0) . sort . map (manhattan (0, 0)) $ [coords | (s1, s2) <- [(s1, s2) | s1 <- parse . (!! 0) $ lns, s2 <- parse . (!! 1) $ lns, s1 `intersect` s2], coords <- Main.unfold s1, coords `elem` Main.unfold s2, coords /= (0, 0)]
+solution content =
+  minimum . map (manhattan (0, 0)) $
+    [ coords
+      | s1 <- w1Seg,
+        s2 <- w2Seg,
+        s1 `intersect` s2,
+        coords <- Main.unfold s1,
+        coords `elem` Main.unfold s2,
+        coords /= (0, 0)
+    ]
   where
-    lns = lines content
+    w1Seg = parse . (!! 0) . lines $ content
+    w2Seg = parse . (!! 1) . lines $ content
+    wire1 = concatMap unfold w1Seg
+    wire2 = concatMap unfold w2Seg
 
 unfold :: Segment -> [Coords]
 unfold ((sx, sy), (ex, ey))
@@ -63,17 +76,19 @@ splitOn c xs = helper [""] c xs
       | otherwise = helper (init o ++ [last o ++ [x]]) c xs
 
 move :: Coords -> Instruction -> Coords
-move (x, y) ('R', amount) = (x + amount, y)
-move (x, y) ('L', amount) = (x - amount, y)
-move (x, y) ('U', amount) = (x, y + amount)
-move (x, y) ('D', amount) = (x, y - amount)
-move (x, y) (_, amount) = (x, y)
+move (x, y) (R, amount) = (x + amount, y)
+move (x, y) (L, amount) = (x - amount, y)
+move (x, y) (U, amount) = (x, y + amount)
+move (x, y) (D, amount) = (x, y - amount)
 
 parseInstruction :: String -> Instruction
-parseInstruction word = (head word, read . tail $ word)
+parseInstruction ('U' : xs) = (U, read xs)
+parseInstruction ('D' : xs) = (D, read xs)
+parseInstruction ('L' : xs) = (L, read xs)
+parseInstruction ('R' : xs) = (R, read xs)
 
 manhattan :: (Num a) => (a, a) -> (a, a) -> a
 manhattan (x1, y1) (x2, y2) = abs (x1 - x2) + abs (y1 - y2)
 
 main :: IO ()
-main = do openFile "day03.dat" ReadMode >>= hGetContents >>= print . solution
+main = do readFile "day03.dat" >>= print . solution
