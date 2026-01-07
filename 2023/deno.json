@@ -9,6 +9,7 @@
     "day04-1": "deno run -R day04-1.ts",
     "day04-2": "deno run -R day04-2.ts",
     "day05-1": "deno run -R day05-1.ts",
+    "day05-2": "deno run -R day05-2.ts",
     "day06-1": "deno run -R day06-1.ts",
     "day06-2": "deno run -R day06-2.ts",
     "day07-1": "deno run -R day07-1.ts"
