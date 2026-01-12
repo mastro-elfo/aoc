@@ -48,15 +48,14 @@ def parse_components(content: str):
     for row_index, row in enumerate(content.split("\n")):
         for col_index, char in enumerate(row):
             if char in "1234567890":
-                if component:
-                    # FIXME
+                if component is None:
+                    component = (int(char), [(row_index, col_index)])
+                else:
                     value, coords = component
                     component = (
                         value * 10 + int(char),
                         [*coords, (row_index, col_index)],
                     )
-                else:
-                    component = (int(char), [(row_index, col_index)])
             elif component:
                 output.append(component)
                 component = None
