@@ -114,5 +114,5 @@ https://adventofcode.com
 - https://adventofcode.com/2025/day/8 ✓
 - https://adventofcode.com/2025/day/9 ✓
 - https://adventofcode.com/2025/day/10 ✓
-- https://adventofcode.com/2025/day/11 ½
+- https://adventofcode.com/2025/day/11 ✓
 - https://adventofcode.com/2025/day/12 ✗
