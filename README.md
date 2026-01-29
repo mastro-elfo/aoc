@@ -30,6 +30,7 @@ https://adventofcode.com
 - https://adventofcode.com/2024/day/9 ✓
 - https://adventofcode.com/2024/day/10 ✓
 - https://adventofcode.com/2024/day/11 ✓
+- https://adventofcode.com/2024/day/12 ✓
 
 ## 2023
 
