@@ -39,7 +39,7 @@ https://adventofcode.com
 - https://adventofcode.com/2024/day/18 ✓
 - https://adventofcode.com/2024/day/19 ✓
 - https://adventofcode.com/2024/day/20 ✓
-- https://adventofcode.com/2024/day/20 ½
+- https://adventofcode.com/2024/day/21 ½
 
 ## 2023
 
