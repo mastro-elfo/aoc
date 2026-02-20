@@ -1,71 +1,80 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 
-from multiprocessing import Pool
+
 from typing import Any
 
-type Table = tuple[int, int, int]
+type Range = tuple[int, int, int]
+type Interval = tuple[int, int]
 
 
-def solution(content: list[str]) -> Any:
-    maps = parse(content[2:])
-    seeds = parse_seeds(content[0])
-    with Pool(10) as p:
-        return min(
-            p.map(
-                process,
-                [(seeds, maps) for seeds in seeds],
-            )
-        )
+def solution(content: str) -> Any:
+    intvs = parse_seeds(content.split("\n")[0])
+    maps = parse_ranges("\n".join(content.split("\n")[2:]))
+
+    for mp in maps:
+        intvs = apply_all(mp, intvs)
+
+    return min(start for start, _ in intvs)
 
 
-def process(data: tuple[range, list[list[Table]]]):
-    seeds, maps = data
-    minimum = None
-    for seed in seeds:
-        loc = convert(seed, maps)
-        minimum = loc if minimum is None else min(minimum, loc)
-    if minimum is None:
-        raise ValueError("Invalid minimum")
-    return minimum
+def apply_all(ranges: list[Range], intvs: list[Interval]) -> list[Interval]:
+    return [x for intv in intvs for x in apply_any(ranges, intv)]
 
 
-def parse_seeds(line: str):
-    values = [int(x) for x in line[7:].split(" ")]
-    return [
-        (range(start, start + size)) for start, size in zip(values[::2], values[1::2])
-    ]
+def apply_any(ranges: list[Range], seeds: Interval):
+    for rng in ranges:
+        if overlap(rng, seeds):
+            same, transformed = apply_one(rng, seeds)
+            return transformed + apply_all(ranges, same)
+    return [seeds]
 
 
-def parse(lines: list[str]) -> list[list[Table]]:
-    output: list[list[Table]] = []
-    for line in lines:
-        if line.strip() == "":
-            continue
-        elif "-" in line:
-            output.append([])
-        else:
-            output = output[:-1] + [output[-1] + [parse_one(line)]]
-    return output
+def apply_one(rng: Range, seeds: Interval) -> tuple[list[Interval], list[Interval]]:
+    start, end = seeds
+    dest, source, size = rng
+    if start < source <= end < source + size:
+        return [(start, source - 1)], [(dest, dest + end - source)]
+    if start < source and source + size <= end:
+        return [(start, source - 1), (source + size, end)], [(dest, dest + size - 1)]
+    if source <= start and end < source + size:
+        return ([]), [(dest + start - source, dest + end - source)]
+    if source <= start < source + size <= end:
+        return [(source + size, end)], [
+            (dest + start - source, dest + size - 1),
+        ]
+    return [seeds], []
 
 
-def parse_one(line: str) -> Table:
-    [dst, src, size] = [int(x) for x in line.split(" ")]
-    return (dst, src, size)
+def overlap(rng: Range, seeds: Interval) -> bool:
+    start, end = seeds
+    _, source, size = rng
+    if end < source:
+        return False
+    if source + size <= start:
+        return False
+    return True
 
 
-def convert(seed: int, maps: list[list[Table]]) -> int:
-    if not maps:
-        return seed
-    [fst, *rest] = maps
-    for dst, src, size in fst:
-        if src <= seed < src + size:
-            return convert(dst + seed - src, rest)
-    return convert(seed, rest)
+def parse_seeds(line: str) -> list[Interval]:
+    parts = [int(x) for x in line[7:].strip().split(" ")]
+    return [(start, start + size - 1) for start, size in zip(parts[::2], parts[1::2])]
+
+
+def parse_ranges(content: str) -> list[list[Range]]:
+    groups = content.split("\n\n")
+    maps: list[list[Range]] = []
+    for group in groups:
+        range_group: list[Range] = []
+        for line in group.split("\n")[1:]:
+            parts = [int(x) for x in line.split(" ")]
+            range_group.append((parts[0], parts[1], parts[2]))
+        maps.append(range_group)
+    return maps
 
 
 def main() -> None:
     with open("day05.dat", "r", encoding="utf8") as file:
-        print(solution(file.readlines()))
+        print(solution(file.read().strip()))
 
 
 if __name__ == "__main__":
