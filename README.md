@@ -63,6 +63,7 @@ https://adventofcode.com
 - https://adventofcode.com/2023/day/14 ✓
 - https://adventofcode.com/2023/day/15 ✓
 - https://adventofcode.com/2023/day/16 ✓
+- https://adventofcode.com/2023/day/17 🐢
 
 ## 2022
 
