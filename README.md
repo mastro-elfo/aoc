@@ -80,6 +80,7 @@ https://adventofcode.com
 - https://adventofcode.com/2022/day/7 ✓✓✓✨
 - https://adventofcode.com/2022/day/8 ✓
 - https://adventofcode.com/2022/day/9 ✓
+- https://adventofcode.com/2022/day/10 ✓
 
 ## 2021
 
