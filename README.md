@@ -81,6 +81,7 @@ https://adventofcode.com
 - https://adventofcode.com/2022/day/8 ✓
 - https://adventofcode.com/2022/day/9 ✓
 - https://adventofcode.com/2022/day/10 ✓
+- https://adventofcode.com/2022/day/11 ½
 
 ## 2021
 
