@@ -51,8 +51,8 @@ def tree(root: str, edges: list[tuple[str, str]]) -> Tree:
 
 
 def parse(line: str) -> tuple[str, str]:
-    parts = line.split(")")
-    return (parts[0].strip(), parts[1].strip())
+    left, _, right = line.partition(")")
+    return (left.strip(), right.strip())
 
 
 def main() -> None:

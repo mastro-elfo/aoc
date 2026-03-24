@@ -80,7 +80,7 @@ def parse_type(cards: str) -> HandType:
 
 
 def parse(line: str) -> Hand:
-    cards, bid = line.split(" ")
+    cards, _, bid = line.partition(" ")
     htype = parse_type(cards)
     return (cards, htype, int(bid))
 

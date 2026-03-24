@@ -25,7 +25,7 @@ def manhattan(c1: Coords, c2: Coords):
 
 
 def parse(line: str) -> Coords:
-    [x, y] = line.split(", ")
+    x, _, y = line.partition(", ")
     return (int(x), int(y))
 
 

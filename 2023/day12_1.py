@@ -47,7 +47,7 @@ def generate(n: int, p: int):
 
 
 def parse_report(line: str) -> Report:
-    schema, groups = line.split(" ")
+    schema, _, groups = line.partition(" ")
     return (schema, [int(x) for x in groups.split(",")])
 
 

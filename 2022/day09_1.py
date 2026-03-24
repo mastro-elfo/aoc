@@ -52,7 +52,7 @@ def move_tail(direction: Direction, head: Coords, tail: Coords) -> Coords:
 
 
 def parse(line: str) -> Instruction:
-    direction, amount, *_ = line.split(" ")
+    direction, _, amount = line.partition(" ")
     return (cast(Direction, direction), int(amount))
 
 

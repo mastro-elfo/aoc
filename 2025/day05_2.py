@@ -38,7 +38,7 @@ def overlap_helper(rng1: Range, rng2: Range) -> bool:
 
 
 def parse_range(line: str) -> Range:
-    start, end = line.split("-")
+    start, _, end = line.partition("-")
     return (int(start), int(end))
 
 

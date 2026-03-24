@@ -20,7 +20,7 @@ def is_fresh(ranges: list[Range], ingredient: int) -> bool:
 
 
 def parse_range(line: str) -> Range:
-    start, end = line.split("-")
+    start, _, end = line.partition("-")
     return (int(start), int(end))
 
 

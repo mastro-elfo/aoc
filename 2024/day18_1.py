@@ -60,7 +60,7 @@ def get_neighbors(coords: Coords, size: int) -> set[Coords]:
 
 
 def parse(line: str) -> Coords:
-    x, y = line.split(",")
+    x, _, y = line.partition(",")
     return (int(x), int(y))
 
 
