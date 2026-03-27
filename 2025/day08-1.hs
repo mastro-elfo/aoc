@@ -12,8 +12,8 @@ type Distances = (Coords, Coords, Float)
 
 type Circuit = [Coords]
 
-solution :: String -> Int
-solution = product . take 3 . sortBy (comparing Down) . map length . connect . map (\(a, b, _) -> [a, b]) . take 1000 . sortBy (compare `on` trdOf3) . toDistances . map parse . lines
+solution :: String -> [Int]
+solution = map length . connect . map (\(a, b, _) -> [a, b]) . take 1000 . sortBy (compare `on` trdOf3) . toDistances . map parse . lines
 
 connect :: [Circuit] -> [Circuit]
 connect [] = []
@@ -21,7 +21,7 @@ connect (cs : css)
   | isJust other = connect (unique (cs ++ fromJust other) : filter (/= fromJust other) css)
   | otherwise = cs : connect css
   where
-    other = find (\os -> any (`elem` os) cs) css
+    other = find (any (`elem` cs)) css
 
 unique :: (Ord a) => [a] -> [a]
 unique = toList . fromList
