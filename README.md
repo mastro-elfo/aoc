@@ -11,7 +11,7 @@ https://adventofcode.com
 - https://adventofcode.com/2025/day/5 ✓✓
 - https://adventofcode.com/2025/day/6 ✓✓
 - https://adventofcode.com/2025/day/7 ✓✓
-- https://adventofcode.com/2025/day/8 ✓
+- https://adventofcode.com/2025/day/8 ✓½
 - https://adventofcode.com/2025/day/9 ✓
 - https://adventofcode.com/2025/day/10 ✓
 - https://adventofcode.com/2025/day/11 ✓
