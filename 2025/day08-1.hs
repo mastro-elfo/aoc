@@ -12,8 +12,19 @@ type Distances = (Coords, Coords, Float)
 
 type Circuit = [Coords]
 
-solution :: String -> [Int]
-solution = map length . connect . map (\(a, b, _) -> [a, b]) . take 1000 . sortBy (compare `on` trdOf3) . toDistances . map parse . lines
+solution :: String -> Int
+solution =
+  product
+    . take 3
+    . sortBy (comparing Down)
+    . map length
+    . connect
+    . map (\(a, b, _) -> [a, b])
+    . take 1000
+    . sortBy (compare `on` trdOf3)
+    . toDistances
+    . map parse
+    . lines
 
 connect :: [Circuit] -> [Circuit]
 connect [] = []
